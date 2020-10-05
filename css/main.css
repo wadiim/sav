@@ -1,0 +1,53 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#controls
+{
+  width: 100%;
+  background-color: #efefef;
+  border-bottom: 1px solid #a4a4a4;
+}
+
+#controls > form
+{
+  text-align: center;
+  /* Remove spaces between children */
+  font-size: 0;
+}
+
+#controls > form > div
+{
+  display: inline-block;
+  width: 25%;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+#view
+{
+  /* Center content vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center vertically and horizontally within viewport */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.bar
+{
+  margin: 0;
+  margin-right: -1px;
+  padding: 0;
+  width: 5px;
+  border: 1px solid black;
+  display: inline-block;
+  background-color: #bfbfbf;
+}

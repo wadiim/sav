@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+    <script type="text/javascript" src="js/utils.js" defer></script>
+		<script type="text/javascript" src="js/visualizer.js" defer></script>
+    <script type="text/javascript" src="js/events.js" defer></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="controls">
+      <form>
+        <div>
+          <label for="algorithm-select">Algorithm:</label>
+          <select id="algorithm-select">
+            <option value="bubbleSort">Bubble sort</option>
+            <option value="selectionSort">Selection sort</option>
+            <option value="insertionSort">Insertion sort</option>
+          </select>
+        </div>
+        <div>
+          Order:
+          <input type="radio" id="ascending" name="order" value="ascending"
+            checked>
+          <label for="ascending">Ascending</label>
+          <input type="radio" id="descending" name="order" value="descending">
+          <label for="descending">Descending</label>
+        </div>
+        <div>
+          <label for="speed">Speed:</label>
+          <input type="range" id="speed" name="speed" min="1" max="1000">
+        </div>
+        <div>
+          <button type="button" id="shuffle">Shuffle</button>
+          <button type="button" id="sort">Sort</button>
+        </div>
+      </form>
+    </div>
+    <div id="view"></div>
+	</body>
+</html>
