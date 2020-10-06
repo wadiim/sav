@@ -122,6 +122,44 @@ function Visualizer() {
     this.resetColors();
   };
 
+  this.quickSort = async function(compareFunction, start, end) {
+    let s = (start !== undefined) ? start : 0;
+    let e = (end !== undefined) ? end : this.bars.length - 1;
+    if (s >= e) {
+      this.resetColors();
+      return;
+    }
+    let index = await this.partition(compareFunction, s, e);
+    await this.quickSort(compareFunction, s, index-1);
+    await this.quickSort(compareFunction, index+1, e);
+  };
+
+  this.partition = async function(compareFunction, start, end) {
+    let pivotIndex = start;
+    let pivotValue = this.bars[end];
+    this.bars[end].style.backgroundColor = this.colors.blue;
+    for (let i = start; i < end; ++i) {
+      this.bars[i].style.backgroundColor = this.colors.green;
+    }
+    this.bars[pivotIndex].style.backgroundColor = this.colors.red;
+    await this.sleep();
+    for (let i = start; i < end; ++i) {
+      if (compareFunction(pivotValue, this.bars[i])) {
+        this.swapBars(pivotIndex, i);
+        this.bars[i].style.backgroundColor = this.colors.green;
+        this.bars[pivotIndex].style.backgroundColor = this.colors.gray;
+        ++pivotIndex;
+        this.bars[pivotIndex].style.backgroundColor = this.colors.red;
+        await this.sleep();
+      }
+    }
+    this.swapBars(pivotIndex, end);
+    for (let i = start; i <= end; ++i) {
+      this.bars[i].style.backgroundColor = this.colors.gray;
+    }
+    return pivotIndex;
+  };
+
   this.sort = async function() {
     this.disableButtons();
     let s = document.getElementById('algorithm-select');
