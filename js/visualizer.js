@@ -103,18 +103,25 @@ function Visualizer() {
     this.bars[0].style.backgroundColor = this.colors.green;
     for (let i = 1; i < this.bars.length; ++i) {
       let key = this.bars[i];
-      let j = i;
-      while (j > 0 && compareFunction(this.bars[j-1], key)) {
-        this.bars[j] = this.bars[j-1];
+      key.style.backgroundColor = this.colors.blue;
+      let j = i - 1;
+      while (j >= 0 && compareFunction(this.bars[j], key)) {
+        this.bars[j+1] = this.bars[j];
         --j;
       }
-      if (j !== i) {
-        key.style.backgroundColor = this.colors.red;
+
+      key.style.backgroundColor = this.colors.red;
+      await this.sleep();
+
+      for (let k = i; k > j + 1; --k) {
+        this.bars[k].style.backgroundColor = this.colors.blue;
         await this.sleep();
-        view.insertBefore(key, this.bars[j]);
-        this.bars[j] = key;
+        this.bars[k].style.backgroundColor = this.colors.green;
       }
-      key.style.backgroundColor = this.colors.blue;
+
+      view.insertBefore(key, this.bars[j+1]);
+      this.bars[j+1] = key;
+
       await this.sleep();
       key.style.backgroundColor = this.colors.green;
     }
